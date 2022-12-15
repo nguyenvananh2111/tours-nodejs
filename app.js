@@ -1,12 +1,11 @@
 const express = require('express');
 
+const userRouter = require('./routes/userRoutes');
+
 const app = express();
 
-app.use('/', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    data: 'hello world!',
-  });
-});
+app.use(express.json({ limit: '10kb' }));
+
+app.use('/api/v1/users', userRouter);
 
 module.exports = app;
